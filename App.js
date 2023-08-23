@@ -1,10 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { ScrollView, StyleSheet, View } from "react-native";
+import useCustomFonts from "./src/Components/Hooks/useCustomFonts";
+import AppBar from "./src/Components/AppBar/AppBar";
+import Main from "./src/Components/Main/Main";
 
 export default function App() {
+  const fontsToLoad = ["Montserrat", "Roboto"];
+  const fontsLoaded = useCustomFonts(fontsToLoad);
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Main />
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +22,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
