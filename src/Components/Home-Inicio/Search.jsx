@@ -26,7 +26,7 @@ const Search = ({ setCategory }) => {
             setCategory(value);
             setValue(newValue);
           }}
-          placeholder="Busca GIFOS y más"
+          placeholder="Busca GIFOS y más ..."
           onSubmitEditing={handleSearchGif}
         />
       </View>

@@ -15,7 +15,9 @@ import BtnVerMas from "./BtnVerMas";
 const CardGift = ({ fontRoboto, category }) => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
-  const url = `https://api.giphy.com/v1/gifs/search?api_key=Tj8JKaeKhEJjgbgXJ4V3SDC7647ujluy&q=${category}&limit=${limit}&offset=${offset}`;
+  const API_URL = "https://api.giphy.com/v1/gifs/search";
+  const API_KEY = "Tj8JKaeKhEJjgbgXJ4V3SDC7647ujluy";
+  const url = `${API_URL}?api_key=${API_KEY}&q=${category}&limit=${limit}&offset=${offset}`;
   const { loading, data } = useApi(url);
 
   const handleLoadMore = () => {
@@ -54,7 +56,7 @@ export default CardGift;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    marginVertical: 20,
     flex: 1,
   },
   containerGifs: {
