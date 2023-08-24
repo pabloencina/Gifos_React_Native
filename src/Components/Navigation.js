@@ -6,7 +6,7 @@ import ScreenHome from "./Screens/ScreenHome";
 import ScreenGifs from "./Screens/ScreenGifs";
 import ScreenFavorites from "./Screens/ScreenFavorites";
 
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import theme from "../Styles/Theme/theme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -16,50 +16,63 @@ function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Inicio"
-      screenOptions={{ tabBarInactiveTintColor: theme.color.whiteColor }}
+      screenOptions={{
+        //tabBarActiveBackgroundColor: theme.color.primary,
+        tabBarInactiveTintColor: theme.color.whiteColor,
+        tabBarLabelStyle: styles.containerTop,
+      }}
     >
       <Tab.Screen
+        style={styles.container}
         name="Inicio"
         component={ScreenHome}
         options={{
-          tabBarLabel: "Inicio",
-          tabBarStyle: styles.containerText,
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="home-variant-outline"
-              size={25}
-              color={color}
-            />
+          tabBarLabel: "",
+          tabBarStyle: styles.container,
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={styles.containerIcons}>
+              <MaterialCommunityIcons
+                name="home-variant-outline"
+                size={40}
+                color={focused ? theme.color.quaternary : color}
+              />
+            </View>
           ),
         }}
       />
       <Tab.Screen
+        style={styles.container}
         name="Buscar Gifos"
         component={ScreenGifs}
         options={{
-          tabBarLabel: "Buscar Gifos",
-          tabBarStyle: styles.containerText,
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="file-gif-box"
-              size={24}
-              color={color}
-            />
+          tabBarLabel: "",
+          tabBarStyle: styles.container,
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={styles.containerIcons}>
+              <MaterialCommunityIcons
+                name="file-gif-box"
+                size={40}
+                color={focused ? theme.color.quaternary : color}
+              />
+            </View>
           ),
         }}
       />
       <Tab.Screen
+        style={styles.container}
         name="Favoritos"
         component={ScreenFavorites}
         options={{
-          tabBarLabel: "Favoritos",
-          tabBarStyle: styles.containerText,
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="heart-plus-outline"
-              size={24}
-              color={color}
-            />
+          tabBarLabel: "",
+          tabBarStyle: styles.container,
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={styles.containerIcons}>
+              <MaterialCommunityIcons
+                name="heart-plus-outline"
+                size={45}
+                color={focused ? theme.color.quaternary : color}
+              />
+            </View>
           ),
         }}
       />
@@ -76,16 +89,25 @@ export default function Navigation() {
 }
 
 const styles = StyleSheet.create({
-  containerText: {
-    fontWeight: theme.fontWeights.bold,
-    fontSize: theme.fontSizes.title,
-    color: "red",
+  container: {
     backgroundColor: theme.color.primary,
-    height: 50,
+    height: 65,
     marginVertical: 20,
     padding: 20,
   },
   containerTop: {
     backgroundColor: theme.color.primary,
+  },
+  containerIcons: {
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  tabBarButton: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: theme.color.primary,
+    height: 50,
   },
 });
