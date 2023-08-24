@@ -18,7 +18,7 @@ const BtnVerMas = ({ fontRoboto, handleLoadMore }) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
+    height: 60,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
     height: 40,
 
     borderWidth: 1,
-    borderColor: theme.color.primary,
+    borderColor: theme.color.quaternary,
     borderRadius: 20,
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
   },
   text: {
-    color: theme.color.primary,
+    color: theme.color.quaternary,
   },
 });
 

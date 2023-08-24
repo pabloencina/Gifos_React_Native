@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    marginVertical: 20,
   },
   inputContainer: {
     flexDirection: "row", // Alinea los elementos horizontalmente

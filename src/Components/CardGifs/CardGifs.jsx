@@ -24,10 +24,17 @@ const CardGifs = ({ fontRoboto, category, setCategory }) => {
   const handleLoadMore = () => {
     setOffset(offset + limit);
   };
-  const screenHeight = Dimensions.get("window").height;
+
   return (
-    <View style={[styles.container, { height: screenHeight * 100 }]}>
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.image}
+          source={require("../../Assets/Images/ilustra_header.png")}
+        />
+      </View>
       <Search setCategory={setCategory} />
+
       <FlatList
         //style={{ backgroundColor: "red", flex: 1 }}
         showsVerticalScrollIndicator={false}
@@ -40,9 +47,9 @@ const CardGifs = ({ fontRoboto, category, setCategory }) => {
               source={{ uri: item.images.downsized_medium.url }}
               style={styles.image}
             />
-            <Text style={[styles.text, { fontFamily: fontRoboto }]}>
+            {/* <Text style={[styles.text, { fontFamily: fontRoboto }]}>
               {item.title}
-            </Text>
+            </Text> */}
           </View>
         )}
       />
@@ -60,17 +67,23 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
     flex: 1,
+    backgroundColor: theme.color.whiteColor,
   },
+
   containerGifs: {
     width: 210,
-    padding: 15,
     alignItems: "center",
     justifyContent: "center",
-    //backgroundColor: "red",
+    marginVertical: 25,
+  },
+  imageContainer: {
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   image: {
-    width: 170,
-    height: 170,
+    width: "80%",
+    height: 160,
+    justifyContent: "center",
   },
   text: {
     color: theme.color.primary,

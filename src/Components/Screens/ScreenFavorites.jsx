@@ -1,8 +1,9 @@
 import React from "react";
 import { Text } from "react-native";
+import Favorites from "../Favorites/Favorites";
 
 const ScreenFavorites = () => {
-  return <Text>Hola!!! Estoy en Favorites!!!</Text>;
+  return <Favorites />;
 };
 
 export default ScreenFavorites;
