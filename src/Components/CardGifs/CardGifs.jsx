@@ -13,7 +13,7 @@ import useApi from "../Hooks/useApi";
 import BtnVerMas from "./BtnVerMas";
 import Search from "./Search";
 
-const CardGift = ({ fontRoboto, category, setCategory }) => {
+const CardGifs = ({ fontRoboto, category, setCategory }) => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
   const API_URL = "https://api.giphy.com/v1/gifs/search";
@@ -54,7 +54,7 @@ const CardGift = ({ fontRoboto, category, setCategory }) => {
   );
 };
 
-export default CardGift;
+export default CardGifs;
 
 const styles = StyleSheet.create({
   container: {
