@@ -1,8 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+
 import useCustomFonts from "./src/Components/Hooks/useCustomFonts";
-import AppBar from "./src/Components/AppBar/AppBar";
-import Main from "./src/Components/Main/Main";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+//import AppBar from "./src/Components/AppBar/AppBar";
+//import Main from "./src/Components/Main/Main";
+import Navigation from "./src/Components/Navigation";
 
 export default function App() {
   const fontsToLoad = ["Montserrat", "Roboto"];
@@ -12,18 +14,10 @@ export default function App() {
     return null;
   }
   return (
-    <SafeAreaView style={styles.container}>
-      <Main />
+    <SafeAreaProvider>
+      {/* <Main /> */}
+      <Navigation />
       <StatusBar style="auto" />
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

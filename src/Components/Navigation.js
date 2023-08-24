@@ -1,42 +1,25 @@
-import createBottomTabNavigator from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import React from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
+import ScreenHome from "./Screens/ScreenHome";
+import ScreenGifs from "./Screens/ScreenGifs";
 
 //screens
-
-import Home from "./Home-Inicio/Home";
-import CardGift from "./CardGifs/CardGifs";
 
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
-  const [category, setCategory] = useState("");
   return (
     <Tab.Navigator>
-      <Tab.Screen
-        name="Home"
-        component={
-          <Home
-            fontRoboto={fontRoboto}
-            fontMontserrat={fontMontserrat}
-            setCategory={setCategory}
-          />
-        }
-      />
-      <Tab.Screen
-        name="Gifos"
-        component={<CardGift fontRoboto={fontRoboto} category={category} />}
-      />
+      <Tab.Screen name="Home" component={ScreenHome} />
+      <Tab.Screen name="Gifos" component={ScreenGifs} />
     </Tab.Navigator>
   );
 }
 
-export default function Navigation({
-  fontRoboto = { fontRoboto },
-  fontMontserrat = { fontMontserrat },
-  setCategory = { setCategory },
-  category = { category },
-}) {
+export default function Navigation() {
   return (
     <NavigationContainer>
       <MyTabs />
