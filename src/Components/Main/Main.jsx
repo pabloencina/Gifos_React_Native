@@ -21,7 +21,11 @@ const Main = ({ fontRoboto, fontMontserrat }) => {
         //category={category}
       />
       {/* <Trending fontRoboto={fontRoboto} fontMontserrat={fontMontserrat} /> */}
-      <CardGifs fontRoboto={fontRoboto} category={category} />
+      <CardGifs
+        fontRoboto={fontRoboto}
+        category={category}
+        setCategory={setCategory}
+      />
       {/* <TrendingGifos fontRoboto={fontRoboto} fontMontserrat={fontMontserrat} /> */}
       <Footer fontMontserrat={fontMontserrat} />
     </View>

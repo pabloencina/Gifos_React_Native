@@ -1,7 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import theme from "../../Styles/Theme/theme";
-import Search from "./Search";
 //import Trending from "./Trending";
 //import CardGift from "../CardsGift/CardGift";
 
@@ -21,7 +20,7 @@ const Home = ({ fontRoboto, fontMontserrat, setCategory }) => {
         style={styles.image}
         source={require("../../Assets/Images/Image-principal.png")}
       />
-      <Search setCategory={setCategory} />
+
       {/* <Trending fontRoboto={fontRoboto} fontMontserrat={fontMontserrat} /> */}
     </View>
   );

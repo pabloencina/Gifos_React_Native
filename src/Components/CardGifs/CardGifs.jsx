@@ -11,8 +11,9 @@ import {
 import theme from "../../Styles/Theme/theme";
 import useApi from "../Hooks/useApi";
 import BtnVerMas from "./BtnVerMas";
+import Search from "./Search";
 
-const CardGift = ({ fontRoboto, category }) => {
+const CardGift = ({ fontRoboto, category, setCategory }) => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
   const API_URL = "https://api.giphy.com/v1/gifs/search";
@@ -26,6 +27,7 @@ const CardGift = ({ fontRoboto, category }) => {
   const screenHeight = Dimensions.get("window").height;
   return (
     <View style={[styles.container, { height: screenHeight * 100 }]}>
+      <Search setCategory={setCategory} />
       <FlatList
         //style={{ backgroundColor: "red", flex: 1 }}
         showsVerticalScrollIndicator={false}
