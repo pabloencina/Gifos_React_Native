@@ -18,7 +18,7 @@ function MyTabs() {
       initialRouteName="Inicio"
       screenOptions={{
         //tabBarActiveBackgroundColor: theme.color.primary,
-        tabBarInactiveTintColor: theme.color.whiteColor,
+        tabBarInactiveTintColor: theme.color.secondary,
         tabBarLabelStyle: styles.containerTop,
       }}
     >
@@ -90,13 +90,13 @@ export default function Navigation() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.color.primary,
+    backgroundColor: theme.color.whiteColor,
     height: 65,
     marginVertical: 20,
     padding: 20,
   },
   containerTop: {
-    backgroundColor: theme.color.primary,
+    //backgroundColor: theme.color.primary,
   },
   containerIcons: {
     height: 40,

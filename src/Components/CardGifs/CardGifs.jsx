@@ -28,15 +28,16 @@ const CardGifs = ({ fontRoboto, category, setCategory }) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          source={require("../../Assets/Images/ilustra_header.png")}
-        />
+        {data && !data.length > 0 && (
+          <Image
+            style={styles.image}
+            source={require("../../Assets/Images/ilustra_header.png")}
+          />
+        )}
       </View>
-      <Search setCategory={setCategory} />
+      <Search setCategory={setCategory} fontRoboto={fontRoboto} />
 
       <FlatList
-        //style={{ backgroundColor: "red", flex: 1 }}
         showsVerticalScrollIndicator={false}
         numColumns={2}
         data={data}
