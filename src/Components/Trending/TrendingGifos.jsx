@@ -1,5 +1,12 @@
 import React from "react";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import theme from "../../Styles/Theme/theme";
 import useApi from "../Hooks/useApi";
 
@@ -27,12 +34,16 @@ const TrendingGifos = ({ fontRoboto }) => {
           data={data}
           renderItem={({ item }) => {
             return (
-              <View style={styles.container} key={item.id}>
+              <TouchableOpacity
+                style={styles.container}
+                key={item.id}
+                onPress={() => {}}
+              >
                 <Image
                   source={{ uri: item.images.downsized_medium.url }}
                   style={styles.image}
                 />
-              </View>
+              </TouchableOpacity>
             );
           }}
         />

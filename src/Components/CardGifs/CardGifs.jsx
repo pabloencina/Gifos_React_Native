@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import {
+  Button,
   Dimensions,
   FlatList,
   Image,
   StyleSheet,
   Text,
+  Touchable,
+  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -42,16 +45,13 @@ const CardGifs = ({ fontRoboto, category, setCategory }) => {
         numColumns={2}
         data={data}
         renderItem={({ item }) => (
-          <View style={styles.containerGifs}>
+          <TouchableOpacity style={styles.containerGifs} onPress={() => {}}>
             <Image
               key={item.id}
               source={{ uri: item.images.downsized_medium.url }}
               style={styles.image}
             />
-            {/* <Text style={[styles.text, { fontFamily: fontRoboto }]}>
-              {item.title}
-            </Text> */}
-          </View>
+          </TouchableOpacity>
         )}
       />
 
