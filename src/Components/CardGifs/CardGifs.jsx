@@ -30,6 +30,7 @@ const CardGifs = ({
   const { API_URL_SEARCH, API_KEY } = useApiKeyUrl();
   const url = `${API_URL_SEARCH}?api_key=${API_KEY}&q=${category}&limit=${limit}&offset=${offset}`;
   const { loading, data } = useApi(url);
+  const [showDetail, setShowDetail] = useState(false);
 
   const handleLoadMore = () => {
     setOffset(offset + limit);
@@ -38,9 +39,18 @@ const CardGifs = ({
   const handleCardById = (itemId) => {
     const selected = data.find((item) => item.id === itemId);
     setSelectedGif(selected);
+    setShowDetail(true);
   };
-  if (selectedGif) {
-    return <DetailCardGifById selectedGif={selectedGif} />;
+  const handleBackToGifs = () => {
+    setShowDetail(false);
+  };
+  if (showDetail) {
+    return (
+      <DetailCardGifById
+        selectedGif={selectedGif}
+        handleBackToGifs={handleBackToGifs}
+      />
+    );
   }
   return (
     <View style={styles.container}>

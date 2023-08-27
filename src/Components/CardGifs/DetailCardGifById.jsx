@@ -6,11 +6,11 @@ import { AntDesign } from "@expo/vector-icons";
 import theme from "../../Styles/Theme/theme";
 import { TouchableOpacity } from "react-native";
 
-const DetailCardGifById = ({ selectedGif }) => {
+const DetailCardGifById = ({ handleBackToGifs, selectedGif }) => {
   return (
     <View style={styles.container}>
       <View style={styles.containerCloseIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleBackToGifs}>
           <Ionicons name="close" size={30} color={theme.color.primary} />
         </TouchableOpacity>
       </View>
