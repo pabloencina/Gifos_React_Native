@@ -12,7 +12,7 @@ const useApi = (url) => {
         setLoading(true);
         setData(respJson.data);
 
-        console.log("RESPUESTA", JSON.stringify(respJson));
+        // console.log("RESPUESTA", JSON.stringify(respJson));
       })
       .catch((error) => {
         console.log(error);
@@ -23,6 +23,7 @@ const useApi = (url) => {
   useEffect(() => {
     fetchApi();
   }, [url]);
+
   return { loading, data };
 };
 

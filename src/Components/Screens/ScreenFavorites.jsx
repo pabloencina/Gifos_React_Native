@@ -1,9 +1,15 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import Favorites from "../Favorites/Favorites";
+import DetailCardGifById from "../CardGifs/DetailCardGifById";
 
 const ScreenFavorites = () => {
-  return <Favorites />;
+  return (
+    <View>
+      {/* <Favorites /> */}
+      <DetailCardGifById />
+    </View>
+  );
 };
 
 export default ScreenFavorites;

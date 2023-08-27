@@ -9,12 +9,12 @@ import {
 } from "react-native";
 import theme from "../../Styles/Theme/theme";
 import useApi from "../Hooks/useApi";
+import useApiKeyUrl from "../Hooks/useApiKeyUrl";
 
 const TrendingGifos = ({ fontRoboto }) => {
-  const API_URL = "https://api.giphy.com/v1/gifs/trending";
-  const API_KEY = "Tj8JKaeKhEJjgbgXJ4V3SDC7647ujluy";
+  const { API_URL_TRENDING, API_KEY } = useApiKeyUrl();
 
-  const url = `${API_URL}?api_key=${API_KEY}&limit=10`;
+  const url = `${API_URL_TRENDING}?api_key=${API_KEY}&limit=10`;
   const { loading, data } = useApi(url);
   return (
     <View>
@@ -29,8 +29,8 @@ const TrendingGifos = ({ fontRoboto }) => {
       <View>
         <FlatList
           showsHorizontalScrollIndicator={false}
-          horizontal={true} // Set horizontal to true
-          pagingEnabled={true} // Enable paging for smooth sliding
+          horizontal={true}
+          pagingEnabled={true}
           data={data}
           renderItem={({ item }) => {
             return (

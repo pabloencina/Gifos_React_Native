@@ -15,19 +15,22 @@ import theme from "../../Styles/Theme/theme";
 import useApi from "../Hooks/useApi";
 import BtnVerMas from "./BtnVerMas";
 import Search from "./Search";
+import useApiKeyUrl from "../Hooks/useApiKeyUrl";
 
 const CardGifs = ({ fontRoboto, category, setCategory }) => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
-  const API_URL = "https://api.giphy.com/v1/gifs/search";
-  const API_KEY = "Tj8JKaeKhEJjgbgXJ4V3SDC7647ujluy";
-  const url = `${API_URL}?api_key=${API_KEY}&q=${category}&limit=${limit}&offset=${offset}`;
+  const { API_URL_SEARCH, API_KEY } = useApiKeyUrl();
+  const url = `${API_URL_SEARCH}?api_key=${API_KEY}&q=${category}&limit=${limit}&offset=${offset}`;
   const { loading, data } = useApi(url);
 
   const handleLoadMore = () => {
     setOffset(offset + limit);
   };
 
+  const handleCardById = () => {
+    console.log("aca estoy");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -45,7 +48,10 @@ const CardGifs = ({ fontRoboto, category, setCategory }) => {
         numColumns={2}
         data={data}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.containerGifs} onPress={() => {}}>
+          <TouchableOpacity
+            style={styles.containerGifs}
+            onPress={handleCardById}
+          >
             <Image
               key={item.id}
               source={{ uri: item.images.downsized_medium.url }}

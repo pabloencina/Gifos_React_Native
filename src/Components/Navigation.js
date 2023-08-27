@@ -9,6 +9,7 @@ import ScreenFavorites from "./Screens/ScreenFavorites";
 import { StyleSheet, View } from "react-native";
 import theme from "../Styles/Theme/theme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import DetailCardGifById from "./CardGifs/DetailCardGifById";
 
 const Tab = createBottomTabNavigator();
 
@@ -17,9 +18,7 @@ function MyTabs() {
     <Tab.Navigator
       initialRouteName="Inicio"
       screenOptions={{
-        //tabBarActiveBackgroundColor: theme.color.primary,
         tabBarInactiveTintColor: theme.color.secondary,
-        tabBarLabelStyle: styles.containerTop,
       }}
     >
       <Tab.Screen
@@ -76,6 +75,24 @@ function MyTabs() {
           ),
         }}
       />
+      {/* <Tab.Screen
+        style={styles.container}
+        name="Gif"
+        component={DetailCardGifById}
+        options={{
+          tabBarLabel: "",
+          tabBarStyle: styles.container,
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={styles.containerIcons}>
+              <MaterialCommunityIcons
+                name="heart-plus-outline"
+                size={45}
+                color={focused ? theme.color.quaternary : color}
+              />
+            </View>
+          ),
+        }}
+      /> */}
     </Tab.Navigator>
   );
 }
@@ -94,9 +111,6 @@ const styles = StyleSheet.create({
     height: 65,
     marginVertical: 20,
     padding: 20,
-  },
-  containerTop: {
-    //backgroundColor: theme.color.primary,
   },
   containerIcons: {
     height: 40,
