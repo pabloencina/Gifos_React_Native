@@ -1,25 +1,12 @@
 import React from "react";
-import useApiKeyUrl from "../Hooks/useApiKeyUrl";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { useRoute } from "@react-navigation/native";
 import theme from "../../Styles/Theme/theme";
 import { TouchableOpacity } from "react-native";
 
-const DetailCardGifById = () => {
-  //const route = useRoute();
-  //const { id } = route.params;
-
-  // const { API_URL_SEARCH, API_KEY } = useApiKeyUrl();
-  // const url = `${API_URL_SEARCH}?api_key=${API_KEY}`;
-  // //console.log("ESTE URL ES PARA DETAILCARDBYID:" + url);
-  // const { data } = useApi(url);
-  // const cardGif = data.find((cardById) => cardById.id === parseInt(id));
-  // if (!cardGif) {
-  //   return <div>No se encontró la tarjeta</div>;
-  // }
+const DetailCardGifById = ({ selectedGif }) => {
   return (
     <View style={styles.container}>
       <View style={styles.containerCloseIcon}>
@@ -29,19 +16,15 @@ const DetailCardGifById = () => {
       </View>
       <View style={styles.containerGifs}>
         <Image
-          //key={item.id}
-          // source={{ uri: item.images.downsized_medium.url }}
-          source={require("../../Assets/Images/ilustra_header.png")}
+          key={selectedGif.id}
+          source={{ uri: selectedGif.images.downsized_medium.url }}
           style={styles.image}
         />
       </View>
 
       <View style={styles.containerDescription}>
         <View style={styles.containerText}>
-          <Text style={styles.text}>
-            Cats Hugging GIF Cats Hugging GIF Cats Hugging GIF Cats Hugging GIF
-            Cats Hugging GIF
-          </Text>
+          <Text style={styles.text}>{selectedGif.title}</Text>
         </View>
 
         <View style={styles.containerIcons}>

@@ -16,8 +16,15 @@ import useApi from "../Hooks/useApi";
 import BtnVerMas from "./BtnVerMas";
 import Search from "./Search";
 import useApiKeyUrl from "../Hooks/useApiKeyUrl";
+import DetailCardGifById from "./DetailCardGifById";
 
-const CardGifs = ({ fontRoboto, category, setCategory }) => {
+const CardGifs = ({
+  fontRoboto,
+  category,
+  setCategory,
+  setSelectedGif,
+  selectedGif,
+}) => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
   const { API_URL_SEARCH, API_KEY } = useApiKeyUrl();
@@ -28,9 +35,13 @@ const CardGifs = ({ fontRoboto, category, setCategory }) => {
     setOffset(offset + limit);
   };
 
-  const handleCardById = () => {
-    console.log("aca estoy");
+  const handleCardById = (itemId) => {
+    const selected = data.find((item) => item.id === itemId);
+    setSelectedGif(selected);
   };
+  if (selectedGif) {
+    return <DetailCardGifById selectedGif={selectedGif} />;
+  }
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -50,7 +61,7 @@ const CardGifs = ({ fontRoboto, category, setCategory }) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.containerGifs}
-            onPress={handleCardById}
+            onPress={() => handleCardById(item.id)}
           >
             <Image
               key={item.id}
