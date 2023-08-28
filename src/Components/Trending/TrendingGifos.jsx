@@ -10,12 +10,33 @@ import {
 import theme from "../../Styles/Theme/theme";
 import useApi from "../Hooks/useApi";
 import useApiKeyUrl from "../Hooks/useApiKeyUrl";
+import useShowDetail from "../Hooks/useShowDetail";
+import DetailCardGifById from "../CardGifs/DetailCardGifById";
 
 const TrendingGifos = ({ fontRoboto }) => {
   const { API_URL_TRENDING, API_KEY } = useApiKeyUrl();
-
+  const {
+    selectedGif,
+    setSelectedGif,
+    setShowDetail,
+    showDetail,
+    handleBackToGifs,
+  } = useShowDetail();
   const url = `${API_URL_TRENDING}?api_key=${API_KEY}&limit=10`;
   const { loading, data } = useApi(url);
+  const handleCardById = (itemId) => {
+    const selected = data.find((item) => item.id === itemId);
+    setSelectedGif(selected);
+    setShowDetail(true);
+  };
+  if (showDetail) {
+    return (
+      <DetailCardGifById
+        selectedGif={selectedGif}
+        handleBackToGifs={handleBackToGifs}
+      />
+    );
+  }
   return (
     <View>
       <View style={styles.containerText}>
@@ -37,7 +58,7 @@ const TrendingGifos = ({ fontRoboto }) => {
               <TouchableOpacity
                 style={styles.container}
                 key={item.id}
-                onPress={() => {}}
+                onPress={() => handleCardById(item.id)}
               >
                 <Image
                   source={{ uri: item.images.downsized_medium.url }}

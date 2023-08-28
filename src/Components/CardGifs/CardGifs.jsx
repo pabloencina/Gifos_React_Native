@@ -17,21 +17,21 @@ import BtnVerMas from "./BtnVerMas";
 import Search from "./Search";
 import useApiKeyUrl from "../Hooks/useApiKeyUrl";
 import DetailCardGifById from "./DetailCardGifById";
+import useShowDetail from "../Hooks/useShowDetail";
 
-const CardGifs = ({
-  fontRoboto,
-  category,
-  setCategory,
-  setSelectedGif,
-  selectedGif,
-}) => {
+const CardGifs = ({ fontRoboto, category, setCategory }) => {
   const [offset, setOffset] = useState(0);
   const limit = 10;
   const { API_URL_SEARCH, API_KEY } = useApiKeyUrl();
   const url = `${API_URL_SEARCH}?api_key=${API_KEY}&q=${category}&limit=${limit}&offset=${offset}`;
   const { loading, data } = useApi(url);
-  const [showDetail, setShowDetail] = useState(false);
-
+  const {
+    selectedGif,
+    setSelectedGif,
+    showDetail,
+    setShowDetail,
+    handleBackToGifs,
+  } = useShowDetail();
   const handleLoadMore = () => {
     setOffset(offset + limit);
   };
@@ -41,9 +41,7 @@ const CardGifs = ({
     setSelectedGif(selected);
     setShowDetail(true);
   };
-  const handleBackToGifs = () => {
-    setShowDetail(false);
-  };
+
   if (showDetail) {
     return (
       <DetailCardGifById

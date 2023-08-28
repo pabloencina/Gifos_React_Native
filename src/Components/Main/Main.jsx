@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import AppBar from "../AppBar/AppBar";
 import Home from "../Home-Inicio/Home";
 import Footer from "../Footer/Footer";
 import CardGifs from "../CardGifs/CardGifs";
-import TrendingGifos from "../Trending/TrendingGifos";
-import Trending from "../Trending/Trending";
-//import TrendingGifos from "../Home-Inicio/TrendingGifos";
+import useShowDetail from "../Hooks/useShowDetail";
 
 const Main = ({ fontRoboto, fontMontserrat }) => {
   const [category, setCategory] = useState("");
+  const { selectedGif, setSelectedGif } = useShowDetail();
   return (
     <View>
       <AppBar fontRoboto={fontRoboto} />
@@ -18,15 +17,17 @@ const Main = ({ fontRoboto, fontMontserrat }) => {
         fontRoboto={fontRoboto}
         fontMontserrat={fontMontserrat}
         setCategory={setCategory}
-        //category={category}
+        setSelectedGif={setSelectedGif}
       />
-      {/* <Trending fontRoboto={fontRoboto} fontMontserrat={fontMontserrat} /> */}
+
       <CardGifs
         fontRoboto={fontRoboto}
         category={category}
         setCategory={setCategory}
+        selectedGif={selectedGif}
+        setSelectedGif={setSelectedGif}
       />
-      {/* <TrendingGifos fontRoboto={fontRoboto} fontMontserrat={fontMontserrat} /> */}
+
       <Footer fontMontserrat={fontMontserrat} />
     </View>
   );

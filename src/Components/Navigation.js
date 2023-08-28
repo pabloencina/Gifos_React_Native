@@ -9,7 +9,6 @@ import ScreenFavorites from "./Screens/ScreenFavorites";
 import { StyleSheet, View } from "react-native";
 import theme from "../Styles/Theme/theme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import DetailCardGifById from "./CardGifs/DetailCardGifById";
 
 const Tab = createBottomTabNavigator();
 
