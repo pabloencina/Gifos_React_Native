@@ -5,8 +5,10 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import theme from "../../Styles/Theme/theme";
 import { TouchableOpacity } from "react-native";
+import useFavoriteGif from "../Hooks/useFavoriteGif";
 
 const DetailCardGifById = ({ handleBackToGifs, selectedGif }) => {
+  const { handleFavorite, favorite } = useFavoriteGif();
   return (
     <View style={styles.container}>
       <View style={styles.containerCloseIcon}>
@@ -31,8 +33,16 @@ const DetailCardGifById = ({ handleBackToGifs, selectedGif }) => {
           <TouchableOpacity>
             <AntDesign name="download" size={30} color={theme.color.primary} />
           </TouchableOpacity>
-          <TouchableOpacity>
-            <FontAwesome5 name="heart" size={30} color={theme.color.primary} />
+          <TouchableOpacity onPress={handleFavorite}>
+            {favorite ? (
+              <FontAwesome5
+                name="heart"
+                size={30}
+                color={theme.color.primary}
+              />
+            ) : (
+              <AntDesign name="heart" size={30} color={theme.color.primary} />
+            )}
           </TouchableOpacity>
         </View>
       </View>
