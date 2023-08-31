@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import useCustomFonts from "./src/Components/Hooks/useCustomFonts";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-//import AppBar from "./src/Components/AppBar/AppBar";
 import Navigation from "./src/Components/Navigation";
+import React from "react";
 
 export default function App() {
   const fontsToLoad = ["Montserrat", "Roboto"];

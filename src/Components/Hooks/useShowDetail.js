@@ -5,7 +5,7 @@ const useShowDetail = () => {
   const [selectedGif, setSelectedGif] = useState(null);
 
   const handleBackToGifs = () => {
-    setShowDetail(!showDetail);
+    setShowDetail(false);
   };
   return {
     showDetail,

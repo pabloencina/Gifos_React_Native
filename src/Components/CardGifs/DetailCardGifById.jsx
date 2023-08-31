@@ -9,6 +9,7 @@ import useFavoriteGif from "../Hooks/useFavoriteGif";
 
 const DetailCardGifById = ({ handleBackToGifs, selectedGif }) => {
   const { handleFavorite, favorite } = useFavoriteGif();
+
   return (
     <View style={styles.container}>
       <View style={styles.containerCloseIcon}>
