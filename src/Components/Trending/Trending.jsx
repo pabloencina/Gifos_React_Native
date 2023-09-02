@@ -14,18 +14,24 @@ import CardGifs from "../CardGifs/CardGifs";
 
 const Trending = ({ fontRoboto, fontMontserrat, category, setCategory }) => {
   const [selectedUserId, setSelectedUserId] = useState(null);
-  const { API_KEY, API_URL_TRENDING } = useApiKeyUrl();
-  const url = `${API_URL_TRENDING}?api_key=${API_KEY}&limit=15`;
+  const { API_KEY, API_WORD_TRENDING } = useApiKeyUrl();
+  const url = `${API_WORD_TRENDING}?api_key=${API_KEY}&limit=10`;
   const { loading, data } = useApi(url);
-
-  if (data === null) {
-    return null;
+  console.log("TRENDING: " + data);
+ 
+  function capitalizeWords(str) {
+    return str
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
+  
+  
   if (data === null || !Array.isArray(data) || data.length === 0) {
     return null;
   }
 
-  const filteredUsernames = data.filter((trend) => trend.username);
+  const filteredUsernames = data.filter((trend) => trend);
 
   const handleUsernameClick = (userId) => {
     setSelectedUserId(userId);
@@ -55,30 +61,15 @@ const Trending = ({ fontRoboto, fontMontserrat, category, setCategory }) => {
             >
               <Text style={[styles.text, { fontFamily: fontMontserrat }]}>
                 {index !== filteredUsernames.length - 1
-                  ? trend.username + ", "
-                  : trend.username + ". "}
+                  ? capitalizeWords(trend) + ", "
+                  : capitalizeWords(trend) + ". "}
+               
               </Text>
+            
             </TouchableOpacity>
           );
         })}
       </View>
-      {/* <FlatList
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-        data={filteredData} // Usa filteredData en lugar de data
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.containerGifs}
-            onPress={() => handleCardById(item.id)}
-          >
-            <Image
-              key={item.id}
-              source={{ uri: item.images.downsized_medium.url }}
-              style={styles.image}
-            />
-          </TouchableOpacity>
-        )}
-      /> */}
     </View>
   );
 };
