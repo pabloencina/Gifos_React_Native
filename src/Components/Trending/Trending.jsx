@@ -1,15 +1,43 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import theme from "../../Styles/Theme/theme";
 import useApi from "../Hooks/useApi";
+import useApiKeyUrl from "../Hooks/useApiKeyUrl";
+import CardGifs from "../CardGifs/CardGifs";
 
-const Trending = ({ fontRoboto, fontMontserrat }) => {
-  const url = `https://api.giphy.com/v1/gifs/trending?api_key=Tj8JKaeKhEJjgbgXJ4V3SDC7647ujluy&limit=10`;
+const Trending = ({ fontRoboto, fontMontserrat, category, setCategory }) => {
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const { API_KEY, API_URL_TRENDING } = useApiKeyUrl();
+  const url = `${API_URL_TRENDING}?api_key=${API_KEY}&limit=15`;
   const { loading, data } = useApi(url);
-  console.log(data);
+
   if (data === null) {
-    return null; // O puedes mostrar un mensaje de carga, por ejemplo
+    return null;
   }
+  if (data === null || !Array.isArray(data) || data.length === 0) {
+    return null;
+  }
+
+  const filteredUsernames = data.filter((trend) => trend.username);
+
+  const handleUsernameClick = (userId) => {
+    setSelectedUserId(userId);
+    {
+      <CardGifs
+        fontRoboto={fontRoboto}
+        category={category}
+        setCategory={setCategory}
+      />;
+    }
+  };
+  //const filteredData = data.filter((item) => item.id === selectedUserId);
   return (
     <View style={styles.container}>
       <View style={styles.containerTrending}>
@@ -18,22 +46,39 @@ const Trending = ({ fontRoboto, fontMontserrat }) => {
         </Text>
       </View>
       <View style={styles.textContainer}>
-        {data.map((trend, index) => {
+        {filteredUsernames.map((trend, index) => {
           return (
             <TouchableOpacity
               key={trend.id}
               style={styles.textWrapper}
-              onPress={() => {}}
+              onPress={() => handleUsernameClick(trend.id)}
             >
               <Text style={[styles.text, { fontFamily: fontMontserrat }]}>
-                {index !== data.length - 1
-                  ? trend.title + ", "
-                  : trend.title + ". "}
+                {index !== filteredUsernames.length - 1
+                  ? trend.username + ", "
+                  : trend.username + ". "}
               </Text>
             </TouchableOpacity>
           );
         })}
       </View>
+      {/* <FlatList
+        showsVerticalScrollIndicator={false}
+        numColumns={2}
+        data={filteredData} // Usa filteredData en lugar de data
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.containerGifs}
+            onPress={() => handleCardById(item.id)}
+          >
+            <Image
+              key={item.id}
+              source={{ uri: item.images.downsized_medium.url }}
+              style={styles.image}
+            />
+          </TouchableOpacity>
+        )}
+      /> */}
     </View>
   );
 };
@@ -53,13 +98,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: theme.color.primary,
-    fontSize: theme.fontSizes.title,
+    fontSize: theme.fontSizes.title2,
     fontWeight: theme.fontWeights.bold,
   },
   textContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     alignItems: "center",
+    justifyContent: "center",
     padding: 15,
   },
   textWrapper: {
@@ -67,8 +113,12 @@ const styles = StyleSheet.create({
   },
   text: {
     color: theme.color.blackColor,
-    fontSize: theme.fontSizes.text,
-    //marginTop: 20,
-    //padding: 10,
+    fontSize: theme.fontSizes.title,
+  },
+  containerGifs: {
+    width: 210,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 25,
   },
 });

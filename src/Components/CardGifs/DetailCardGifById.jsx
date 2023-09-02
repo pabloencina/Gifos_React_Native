@@ -6,9 +6,11 @@ import { AntDesign } from "@expo/vector-icons";
 import theme from "../../Styles/Theme/theme";
 import { TouchableOpacity } from "react-native";
 import useFavoriteGif from "../Hooks/useFavoriteGif";
+import useDownload from "../Hooks/useDownload";
 
 const DetailCardGifById = ({ handleBackToGifs, selectedGif }) => {
   const { handleFavorite, favorite } = useFavoriteGif();
+  const { getGifContentUri } = useDownload();
 
   return (
     <View style={styles.container}>
@@ -31,7 +33,7 @@ const DetailCardGifById = ({ handleBackToGifs, selectedGif }) => {
         </View>
 
         <View style={styles.containerIcons}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => getGifContentUri(selectedGif.id)}>
             <AntDesign name="download" size={30} color={theme.color.primary} />
           </TouchableOpacity>
           <TouchableOpacity onPress={handleFavorite}>
